@@ -9,7 +9,16 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const tasksRouter = require('./routes/tasks');
 
+mongoose.connect('mongodb://172.31.33.193:27017');
+const db = mongoose.connection;
 var app = express();
+
+db.on('open',()=>{
+  console.log('ok');
+})
+db.on('error',()=>{
+  console.log('Not ok');
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
