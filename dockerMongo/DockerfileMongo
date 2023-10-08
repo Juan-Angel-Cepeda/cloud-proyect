@@ -4,4 +4,4 @@ WORKDIR /root
 RUN apt-get update && apt-get install -y docker.io
 RUN docker pull mongo
 
-CMD docker run -d -p 27017:27017 --name mongodb mongoapt
+CMD docker run -d -p 27017:27017 --name mongodb mongo
