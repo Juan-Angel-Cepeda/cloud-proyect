@@ -1,0 +1,45 @@
+- hosts: ['serv1', 'serv2','mongodb','nginx']
+  become: yes
+  tasks:
+  - name: Install curl
+    apt:
+      name: curl
+      state: present
+  - name: Install Docker
+    shell: 'curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh'
+  - name: Start Docker
+    shell: 'sudo service docker start'
+    ignore_errors: yes
+  - name: Instalar Git
+    shell: 'sudo apt-get install git'
+  - name: Clonar el repositorio
+    git:
+      repo: https://github.com/Juan-Angel-Cepeda/cloud-proyect
+      dest: /home/proyecto
+- hosts: ['serv1', 'serv2']
+  become: yes
+  tasks:
+  - name: Acceder a la carpeta y hacer docker compose up
+    shell: 'cd /home/proyecto/myapp && docker compose up -d'
+- hosts: ['mongodb']
+  become: yes
+  tasks:
+   - name: Instalar la imagen de mongo
+      shell: 'docker pull mongo'
+   - name: levantar mongo
+      shell: 'docker run -d -p 27017:27017 --name mongodb mongo'
+- hosts: ['nginx']
+  become: yes
+  tasks:
+   - name: Instalar la imagen de nginx
+      shell: 'docker pull nginx'
+   - name: levantar nginx
+      docker_container:
+      name: nginx
+      image: nginx
+      ports:
+        - 80:80
+      volumes:
+        - /home/proyecto/nginx/nginx.conf:/etc/nginx/nginx.conf
+      state: started
+      
