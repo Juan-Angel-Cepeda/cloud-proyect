@@ -16,11 +16,11 @@ const addTodo = () => {
   }
 
   const newTodo = {
-    content: input_content.value,
+    name: input_content.value,
     done: false,
   }
 
-  axios.post('/todos', newTodo)
+  axios.post('/tasks', newTodo)
     .then(response => {
       todos.value.push(response.data)
     })
@@ -30,7 +30,7 @@ const addTodo = () => {
 }
 
 const removeTodo = (todo) => {
-  axios.delete(`/todos/${todo.id}`)
+  axios.delete(`/tasks/${todo.id}`)
     .then(response => {
       todos.value = todos.value.filter((t) => t !== todo)
     })
