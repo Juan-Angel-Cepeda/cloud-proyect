@@ -2,7 +2,7 @@ version: '1.0.0'
 services:
   app-backend-to-do-1:
     build: .
-    image: to-do-backend-cc-poryect:1.0.0
+    image: to-do-backend-cc-proyect:1.0.0
     ports:
       - 3000:3000
     environment:
@@ -10,7 +10,7 @@ services:
       PORT: 3000
   app-backend-to-do-2:
     build: .
-    image: to-do-backend-cc-poryect:1.0.0
+    image: to-do-backend-cc-proyect:1.0.0
     ports:
       - 3001:3001
     environment:
