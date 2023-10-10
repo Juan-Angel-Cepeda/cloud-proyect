@@ -11,36 +11,57 @@
     shell: 'sudo service docker start'
     ignore_errors: yes
   - name: Instalar Git
-    shell: 'sudo apt-get install git'
+    apt:
+      name: git
+      state: present
   - name: Crear carpeta para el proyecto
-    shell: 'sudo mkdir /home/proyecto'
+    shell: 'sudo mkdir /home/ubuntu/proyecto'
+    ignore_errors: yes
   - name: Clonar el repositorio
     git:
       repo: https://github.com/Juan-Angel-Cepeda/cloud-proyect
-      dest: /home/proyecto
+      dest: /home/ubuntu/proyecto
+      update: yes
+      clone: yes
 - hosts: ['ms-ws1', 'ms-ws2']
   become: yes
   tasks:
   - name: Acceder a la carpeta y hacer docker compose up
-    shell: 'cd /home/proyecto/cloud-proyect/myapp && docker compose up -d'
-- hosts: ['mongodb']
-  become: yes
-  tasks:
-   - name: Instalar la imagen de mongo
-      shell: 'docker pull mongo'
-   - name: levantar mongo
-      shell: 'docker run -d -p 27017:27017 --name mongodb mongo'
+    command: docker compose up -d
+    args:
+      chdir: /home/ubuntu/proyecto/myapp
+#- hosts: ['mongodb']
+#  become: yes
+#  tasks:
+#   - name: Instalar la imagen de mongo
+#      shell: 'docker pull mongo'
+#   - name: levantar mongo
+#      shell: 'docker run -d -p 27017:27017 --name mongodb mongo'
 - hosts: ['nginx']
   become: yes
   tasks:
+   - name: Instalar python
+     shell: 'sudo apt install python3 -y'
+   - name: Instalar la biblioteca python de docker
+     apt: 
+      name: python3-pip
+      install_recommends: yes
+      force: yes
+   - name: Instalar la bilbioteca de python de docker
+     pip:
+      name: docker
+      state: present
+   - name: Establecer ansible_python
+     set_fact: 
+      ansible_python_interpreter: /usr/bin/python3
    - name: Instalar la imagen de nginx
-      shell: 'docker pull nginx'
+     shell: 'docker pull nginx'
    - name: levantar nginx
-      docker_container:
+    docker_container:
       name: nginx
       image: nginx
       ports:
         - 80:80
       volumes:
-        - /home/proyecto/cloud-proyect/nginx/nginx.conf:/etc/nginx/nginx.conf
+        - /home/ubuntu/proyecto/nginx/nginx.conf:/etc/nginx/nginx.conf
       state: started
