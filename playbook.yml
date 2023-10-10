@@ -30,13 +30,13 @@
     command: docker compose up -d
     args:
       chdir: /home/ubuntu/proyecto/myapp
-#- hosts: ['mongodb']
-#  become: yes
-#  tasks:
-#   - name: Instalar la imagen de mongo
-#      shell: 'docker pull mongo'
-#   - name: levantar mongo
-#      shell: 'docker run -d -p 27017:27017 --name mongodb mongo'
+- hosts: ['mongodb']
+  become: yes
+  tasks:
+   - name: Instalar la imagen de mongo
+      shell: 'docker pull mongo'
+   - name: levantar mongo
+      shell: 'docker run -d -p 27017:27017 --name mongodb mongo'
 - hosts: ['nginx']
   become: yes
   tasks:

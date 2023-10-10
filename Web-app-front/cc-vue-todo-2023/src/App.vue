@@ -20,7 +20,7 @@ const addTodo = async() => {
     done: false,
   }
 
-  await axios.post('18.222.216.227/tasks', newTodo)
+  await axios.post('http://18.222.216.227/tasks', newTodo)
     .then(response => {
       todos.value.push(response.data)
     })
