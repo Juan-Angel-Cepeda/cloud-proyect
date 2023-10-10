@@ -9,7 +9,7 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const tasksRouter = require('./routes/tasks');
 
-mongoose.connect('mongodb://172.31.28.221:27017');
+mongoose.connect('mongodb://18.217.86.175:27017');
 const db = mongoose.connection;
 var app = express();
 

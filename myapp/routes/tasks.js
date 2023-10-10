@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/tasks');
 
-router.get('./', controller.list);
+router.get('/', controller.list);
 
 router.get('/:id', controller.index);
 
