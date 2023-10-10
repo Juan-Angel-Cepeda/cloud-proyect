@@ -10,7 +10,7 @@ const todos_asc = computed(() => todos.value.sort((a,b) =>{
 	return a.createdAt - b.createdAt
 }))
 
-const addTodo = () => {
+const addTodo = async() => {
   if (input_content.value.trim() === '') {
     return
   }
@@ -20,7 +20,7 @@ const addTodo = () => {
     done: false,
   }
 
-  axios.post('18.222.216.227/tasks', newTodo)
+  await axios.post('18.222.216.227/tasks', newTodo)
     .then(response => {
       todos.value.push(response.data)
     })
@@ -29,8 +29,8 @@ const addTodo = () => {
     })
 }
 
-const removeTodo = (todo) => {
-  axios.delete(`18.222.216.227/tasks/${todo.id}`)
+const removeTodo = async (todo) => {
+  await axios.delete(`http://18.222.216.227/tasks/${todo.id}`)
     .then(response => {
       todos.value = todos.value.filter((t) => t !== todo)
     })
