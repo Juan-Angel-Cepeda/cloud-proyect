@@ -39,10 +39,18 @@ const removeTodo = async (todo) => {
     })
 }
 
-onMounted(() => {
-	name.value = localStorage.getItem('name') || ''
-	todos.value = JSON.parse(localStorage.getItem('todos')) || []
+onMounted(async () => {
+  name.value = localStorage.getItem('name') || ''
+
+  try {
+    const response = await axios.get('http://18.222.216.227/tasks')
+    todos.value = response.data
+  } catch (error) {
+    console.error('Error getting todos:', error)
+  }
 })
+
+
 </script>
 
 <template>
