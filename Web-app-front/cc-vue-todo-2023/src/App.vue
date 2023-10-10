@@ -20,7 +20,7 @@ const addTodo = () => {
     done: false,
   }
 
-  axios.post('18.219.138.34/tasks', newTodo)
+  axios.post('18.222.216.227/tasks', newTodo)
     .then(response => {
       todos.value.push(response.data)
     })
@@ -30,7 +30,7 @@ const addTodo = () => {
 }
 
 const removeTodo = (todo) => {
-  axios.delete(`12.219.138.34/tasks/${todo.id}`)
+  axios.delete(`18.222.216.227/tasks/${todo.id}`)
     .then(response => {
       todos.value = todos.value.filter((t) => t !== todo)
     })
