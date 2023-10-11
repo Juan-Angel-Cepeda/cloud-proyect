@@ -16,7 +16,7 @@ const addTodo = async() => {
     done: false,
   }
 
-  await axios.post('http://18.222.216.227/tasks', newTodo)
+  await axios.post('http://3.135.228.247/tasks', newTodo)
     .then(response => {
       todos.value.push(response.data)
     })
@@ -26,7 +26,7 @@ const addTodo = async() => {
 }
 
 const removeTodo = async (todo) => {
-  await axios.delete(`http://18.222.216.227/tasks/${todo.id}`)
+  await axios.delete(`http://3.135.228.247/tasks/${todo.id}`)
     .then(response => {
       todos.value = todos.value.filter((t) => t !== todo)
     })
@@ -37,7 +37,7 @@ const removeTodo = async (todo) => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get('http://18.222.216.227/tasks')
+    const response = await axios.get('http://3.135.228.247/tasks')
     todos.value = response.data.objs
   } catch (error) {
     console.error('Error getting todos:', error)
