@@ -50,7 +50,6 @@ onMounted(async () => {
   }
 })
 
-
 </script>
 
 <template>
@@ -93,7 +92,7 @@ onMounted(async () => {
 					</label>
 
 					<div class="todo-content">
-						<input type="text" v-model="todo.content" />
+						<input type="text" v-model="todo.name" />
 					</div>
 
 					<div class="actions">
