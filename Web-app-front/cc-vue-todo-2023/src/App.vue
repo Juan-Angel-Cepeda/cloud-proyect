@@ -72,7 +72,7 @@ onMounted(async () => {
 		</section>
 
 		<section class="todo-list">
-			<h3>TODO LIST</h3>
+			<h3>To Do List</h3>
 			<div class="list" id="todo-list">
 				<div v-for="todo in todos.value" :class="`todo-item ${todo.done && 'done'}`">
 					{{ todo._name }}
