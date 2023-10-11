@@ -6,10 +6,6 @@ const todos = ref([])
 const name = ref('')
 const input_content = ref('')
 
-const todos_asc = computed(() => todos.value.sort((a,b) =>{
-	return a.createdAt - b.createdAt
-}))
-
 const addTodo = async() => {
   if (input_content.value.trim() === '') {
     return
@@ -40,11 +36,9 @@ const removeTodo = async (todo) => {
 }
 
 onMounted(async () => {
-  name.value = localStorage.getItem('name') || ''
-
   try {
     const response = await axios.get('http://18.222.216.227/tasks')
-    todos.value = response.data
+    todos.value = response.data.objs
   } catch (error) {
     console.error('Error getting todos:', error)
   }
@@ -80,21 +74,12 @@ onMounted(async () => {
 		<section class="todo-list">
 			<h3>TODO LIST</h3>
 			<div class="list" id="todo-list">
-
-				<div v-for="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
-					<label>
-						<input type="checkbox" v-model="todo.done" />
-						<span :class="`bubble ${
-							todo.category == 'business' 
-								? 'business' 
-								: 'personal'
-						}`"></span>
-					</label>
-
+				<div v-for="todo in todos.value" :class="`todo-item ${todo.done && 'done'}`">
+					{{ todo._name }}
+					{{ todo._done }}
 					<div class="todo-content">
 						<input type="text" v-model="todo.name" />
 					</div>
-
 					<div class="actions">
 						<button class="delete" @click="removeTodo(todo)">Delete</button>
 					</div>
