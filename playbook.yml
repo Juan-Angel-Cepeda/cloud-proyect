@@ -57,7 +57,7 @@
    - name: Instalar la imagen de nginx
      shell: 'docker pull nginx'
    - name: levantar nginx
-    docker_container:
+     docker_container:
       name: nginx
       image: nginx
       ports:
