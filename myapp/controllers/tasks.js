@@ -2,7 +2,7 @@ const express = require('express');
 const Task = require('../models/task');
 
 function list(req, res, next) {
-    Task.find().then(objs => res.status(200).json({
+    Task.findAll().then(objs => res.status(200).json({
         message: "Ok",
         objs: objs
     })).catch(ex => res.status(500).json({
