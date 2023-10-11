@@ -3,6 +3,7 @@ services:
   app-backend-to-do-1:
     build: .
     image: to-do-backend-cc-proyect:1.0.0
+    restart: always
     ports:
       - 3000:3000
     environment:
@@ -11,6 +12,7 @@ services:
   app-backend-to-do-2:
     build: .
     image: to-do-backend-cc-proyect:1.0.0
+    restart: always
     ports:
       - 3001:3001
     environment:
