@@ -76,7 +76,7 @@ onMounted(async () => {
 
 		<section class="todo-list">
 			<h3>To Do List</h3>
-			<div class="list" id="todo-list">
+			<div v-if="todos.length > 0" class="list" id="todo-list">
 				<div v-for="todo in todos" :class="`todo-item ${todo.done && 'done'}`">
 					{{ todo._name }}
 					{{ todo._done }}
@@ -89,6 +89,7 @@ onMounted(async () => {
 				</div>
 
 			</div>
+			<div v-else>No hay To-do's!</div>
 		</section>
 
 	</main>
