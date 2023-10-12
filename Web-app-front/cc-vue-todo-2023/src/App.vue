@@ -2,7 +2,7 @@
 import { ref, onMounted, computed, watch } from 'vue'
 import axios from 'axios'
 
-const todos = ref([])
+var todos = [];
 const name = ref('')
 const input_content = ref('')
 
@@ -18,7 +18,7 @@ const addTodo = async() => {
 
   await axios.post('http://3.135.228.247/tasks', newTodo)
     .then(response => {
-      todos.value.push(response.data)
+      todos.push(response.data)
     })
     .catch(error => {
       console.error('Error adding todo:', error)
@@ -26,9 +26,9 @@ const addTodo = async() => {
 }
 
 const removeTodo = async (todo) => {
-  await axios.delete(`http://3.135.228.247/tasks/${todo.id}`)
+  await axios.delete(`http://3.135.228.247/tasks/${todo._id}`)
     .then(response => {
-      todos.value = todos.value.filter((t) => t !== todo)
+      todos = todos.filter((t) => t !== todo)
     })
     .catch(error => {
       console.error('Error deleting todo:', error)
@@ -38,7 +38,10 @@ const removeTodo = async (todo) => {
 onMounted(async () => {
   try {
     const response = await axios.get('http://3.135.228.247/tasks')
-    todos.value = response.data.objs
+	console.log(todos)
+    todos = response.data.objs
+	console.log(todos)
+
   } catch (error) {
     console.error('Error getting todos:', error)
   }
@@ -74,7 +77,7 @@ onMounted(async () => {
 		<section class="todo-list">
 			<h3>To Do List</h3>
 			<div class="list" id="todo-list">
-				<div v-for="todo in todos.value" :class="`todo-item ${todo.done && 'done'}`">
+				<div v-for="todo in todos" :class="`todo-item ${todo.done && 'done'}`">
 					{{ todo._name }}
 					{{ todo._done }}
 					<div class="todo-content">

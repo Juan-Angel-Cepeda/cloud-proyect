@@ -171,6 +171,7 @@ input:checked ~ .bubble::after {
 
 .todo-list .list {
 	margin: 1rem 0;
+	color:#313154
 } 
 
 .todo-list .todo-item {
