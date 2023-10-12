@@ -54,3 +54,30 @@ Para configurar y desplegar esta arquitectura, sigue estos pasos:
 -   Configuración correcta de Docker y el archivo `docker-compose.yml`.
 -   Implementación de medidas de seguridad eficaces en todas las instancias y la instancia S3.
 -   Funcionamiento adecuado de la aplicación web TODO List en el entorno implementado.
+
+## Estructura del Repositorio
+
+-   **cloud-proyect/**
+    
+    -   `playbook.yml`: Archivo de playbook para la automatización del despliegue.
+    -   `README.md`: Documentación detallada del proyecto.
+-   **dockerMongo/**
+    
+    -   `DockerfileMongo`: Archivo de Dockerfile para construir la imagen de MongoDB.
+-   **myapp/**
+    
+    -   `app.js`: Archivo principal de la aplicación.
+    -   `docker-compose.yml`: Archivo de configuración de Docker Compose para orquestar contenedores.
+    -   `Dockerfile`: Archivo de Dockerfile para construir la imagen de la aplicación.
+    -   `nginx.conf`: Archivo de configuración de Nginx para el frontend.
+-   **nginx/**
+    
+    -   `nginx.conf`: Archivo de configuración de Nginx para el servidor web.
+-   **web-app-front/cc-vue-todo-2023/**
+    
+    -   `index.html`: Archivo principal de la interfaz de usuario.
+-   **src/**
+    
+    -   `App.vue`: Archivo principal del componente Vue.
+    -   `main.css`: Archivo de estilos CSS.
+    -   `main.js`: Archivo principal de JavaScript.
