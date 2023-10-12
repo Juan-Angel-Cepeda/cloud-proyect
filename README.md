@@ -3,7 +3,7 @@
 
 Este proyecto del primer parcial tiene como objetivo implementar una arquitectura para una aplicación web de TODO List. La arquitectura consta de diversas instancias de EC2 y una instancia de S3, todas las cuales deben ser configuradas correctamente para garantizar el funcionamiento adecuado de la aplicación. A continuación se detallan los puntos clave que deben cumplirse:
 
-[imagen]
+![enter image description here](https://raw.githubusercontent.com/Juan-Angel-Cepeda/cloud-proyect/master/Images/Proyecto%20primer%20pacial%20cloud.png)
 
 ## Descripción de la Arquitectura:
 
