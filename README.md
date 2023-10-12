@@ -78,3 +78,4 @@ Para configurar y desplegar esta arquitectura, sigue estos pasos:
     -   `index.html`: Archivo principal de la interfaz de usuario.
 
 ## Presentación
+[Documentacion del proyecto](presentacion/Proyecto_Primer_Parcial_Cloud.pdf)
